@@ -154,7 +154,7 @@ if __name__=='__main__':
     print("fptree:")
     dataSet = loadDataSet()
     frozenDataSet = transfer2FrozenDataSet(dataSet)
-    minSupport = 3
+    minSupport = 2
     fptree, headPointTable = createFPTree(frozenDataSet, minSupport)
     # fptree.disp()
     frequentPatterns = {}
@@ -162,7 +162,7 @@ if __name__=='__main__':
     mineFPTree(headPointTable, prefix, frequentPatterns, minSupport)
     print("frequent patterns:")
     print(frequentPatterns)
-    minConf = 0.6
+    minConf = 0.7
     rules = []
     rulesGenerator(frequentPatterns, minConf, rules)
     print("association rules:")

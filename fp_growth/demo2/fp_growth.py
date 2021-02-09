@@ -12,6 +12,15 @@ df = pd.DataFrame([
     'A,B,C,E',
     'A,B,C'
 ])
+
+df = pd.DataFrame(['bread,milk,vegetable,fruit,eggs',
+               'noodle,beef,pork,water,socks,gloves,shoes,rice',
+               'socks,gloves',
+               'bread,milk,shoes,socks,eggs',
+               'socks,shoes,sweater,cap,milk,vegetable,gloves',
+               'eggs,bread,milk,fish,crab,shrimp,rice'])
+
+print(df)
 df.columns = ['items']
 df['items'] = df['items'].map(lambda x: x.split(','))
 
