@@ -6,6 +6,7 @@ import matplotlib.colors as colors
 import numpy as np
 # %matplotlib inline
 
+
 def shuffle_data(X, y, seed=None):
    if seed:
      np.random.seed(seed)
@@ -15,11 +16,14 @@ def shuffle_data(X, y, seed=None):
 
    return X[idx], y[idx]
 
+
 # 正规化数据集 X
 def normalize(X, axis=-1, p=2):
    lp_norm = np.atleast_1d(np.linalg.norm(X, p, axis))
    lp_norm[lp_norm == 0] = 1
    return X / np.expand_dims(lp_norm, axis)
+
+
 # 标准化数据集 X
 def standardize(X):
    X_std = np.zeros(X.shape)
@@ -32,6 +36,8 @@ def standardize(X):
      if std[col]:
        X_std[:, col] = (X_std[:, col] - mean[col]) / std[col]
    return X_std
+
+
 # 划分数据集为训练集和测试集
 def train_test_split(X, y, test_size=0.2, shuffle=True, seed=None):
    if shuffle:
@@ -42,6 +48,7 @@ def train_test_split(X, y, test_size=0.2, shuffle=True, seed=None):
 
    return x_train, x_test, y_train, y_test
 
+
 # 计算矩阵 X 的协方差矩阵
 def calculate_covariance_matrix(X, Y=np.empty((0,0))):
    if not Y.any():
@@ -49,15 +56,20 @@ def calculate_covariance_matrix(X, Y=np.empty((0,0))):
    n_samples = np.shape(X)[0]
    covariance_matrix = (1 / (n_samples-1)) * (X - X.mean(axis=0)).T.dot(Y - Y.mean(axis=0))
    return np.array(covariance_matrix, dtype=float)
+
+
 # 计算数据集 X 每列的方差
 def calculate_variance(X):
    n_samples = np.shape(X)[0]
    variance = (1 / n_samples) * np.diag((X - X.mean(axis=0)).T.dot(X - X.mean(axis=0)))
    return variance
+
+
 # 计算数据集 X 每列的标准差
 def calculate_std_dev(X):
    std_dev = np.sqrt(calculate_variance(X))
    return std_dev
+
 
 # 计算相关系数矩阵
 def calculate_correlation_matrix(X, Y=np.empty([0])):
@@ -69,6 +81,7 @@ def calculate_correlation_matrix(X, Y=np.empty([0])):
    correlation_matrix = np.divide(covariance_matrix, std_dev_X.dot(std_dev_y.T))
 
    return np.array(correlation_matrix, dtype=float)
+
 
 class PCA():
    """
@@ -96,6 +109,7 @@ class PCA():
      X_transformed = X.dot(eigenvectors)
 
      return X_transformed
+
 
 def main():
    # Load the dataset
@@ -127,6 +141,7 @@ def main():
    plt.xlabel('Principal Component 1')
    plt.ylabel('Principal Component 2')
    plt.show()
+
 
 if __name__ == "__main__":
    main()
