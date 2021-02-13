@@ -67,6 +67,6 @@ def logist_groupdata(group):
         print("Accuracy of Group {}: {}".format(i+1, accuracy))
 
 
-logist_groupdata(group_1)
-logist_groupdata(group_2)
+group = [group_1, group_2]
+logist_groupdata(group)
 

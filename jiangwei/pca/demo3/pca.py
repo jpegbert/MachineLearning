@@ -13,14 +13,19 @@ X_norm = StandardScaler().fit_transform(X)
 X_norm.mean(axis=0)      # 这样每一维均值为0了
 
 # 求特征值和特征向量
-# np.cov直接求协方差矩阵，每一行代表一个特征，每一轮代表样本
+# np.cov直接求协方差矩阵，每一行代表一个特征，每一列代表样本
 ew, ev = np.linalg.eig(np.cov(X_norm.T))
+print(ew)
+print(ev)
 
 # 特征向量特征值的排序
 ew_oreder = np.argsort(ew)[::-1]
+print("ew_oreder", ew_oreder)
 ew_sort = ew[ew_oreder]
+print("ew_sort", ew_sort)
 ev_sort = ev[:, ew_oreder]  # ev的每一列代表一个特征向量
-ev_sort.shape # (4,4)
+print("ev_sort", ev_sort)
+print(ev_sort.shape) # (4,4)
 
 # 我们指定降成2维， 然后取出排序后的特征向量的前两列就是基
 K = 2
