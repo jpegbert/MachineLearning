@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import joblib
 
 
 def test_validate(x_test, y_test, y_predict, classifier):
@@ -32,14 +33,22 @@ def logistic_regression(x, y):
     lr = LogisticRegression()
     lr.fit(x_train, y_train)
 
+    # 模型保存
+    joblib.dump(lr, "lr.m")
+
     # 模型效果获取
     r = lr.score(x_train, y_train)
     print("R值(准确率):", r)
+
+    # 模型加载
+    clf = joblib.load("lr.m")
+
     # 预测
-    y_predict = lr.predict(x_test)  # 预测
+    # y_predict = lr.predict(x_test)  # 预测
+    y_predict = clf.predict(x_test)  # 预测
     print(y_predict)
     print(y_test)
-    print(lr.coef_)
+    # print(lr.coef_)
 
     # 绘制测试集结果验证
     test_validate(x_test=x_test, y_test=y_test, y_predict=y_predict, classifier=lr)

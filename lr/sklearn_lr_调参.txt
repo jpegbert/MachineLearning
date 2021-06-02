@@ -29,6 +29,8 @@
     如果选择了ovr，则4种损失函数的优化方法liblinear，newton-cg, lbfgs和sag都可以选择。但是如果选择了multinomial,则只能选择newton-cg, lbfgs和sag了。
 
 5. 类型权重参数： class_weight
+    dict or ‘balanced’, optional (default=None)
+    Weights associated with classes in the form {class_label: weight}. If not given, all classes are supposed to have weight one.
     class_weight参数用于标示分类模型中各种类型的权重，可以不输入，即不考虑权重，或者说所有类型的权重一样。如果选择输入的话，可以选择balanced让类库自己计算类型权重，或者我们自己输入各个类型的权重，比如对于0,1的二元模型，我们可以定义class_weight={0:0.9, 1:0.1}，这样类型0的权重为90%，而类型1的权重为10%。
     如果class_weight选择balanced，那么类库会根据训练样本量来计算权重。某种类型样本量越多，则权重越低，样本量越少，则权重越高。
     sklearn的官方文档中，当class_weight为balanced时，类权重计算方法如下：
